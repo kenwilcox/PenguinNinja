@@ -23,6 +23,8 @@ class GameScene: SKScene {
     var activeSliceBG: SKShapeNode!
     var activeSliceFG: SKShapeNode!
     
+    var activeSlicePoints = [CGPoint]()
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         let background = SKSpriteNode(imageNamed: "sliceBackground")
@@ -41,10 +43,67 @@ class GameScene: SKScene {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
+        super.touchesBegan(touches, withEvent: event)
+        
+        activeSlicePoints.removeAll(keepCapacity: true)
+        
+        if let touch = touches.first {
+            let location = touch.locationInNode(self)
+            activeSlicePoints.append(location)
+            
+            redrawActiveSlice()
+            
+            activeSliceBG.removeAllActions()
+            activeSliceFG.removeAllActions()
+            
+            activeSliceBG.alpha = 1
+            activeSliceFG.alpha = 1
+        }
     }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+    }
+    
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let location = touch.locationInNode(self)
+        
+        activeSlicePoints.append(location)
+        redrawActiveSlice()
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        activeSliceBG.runAction(SKAction.fadeOutWithDuration(0.25))
+        activeSliceFG.runAction(SKAction.fadeOutWithDuration(0.25))
+    }
+    
+    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        if let touches = touches {
+            touchesEnded(touches, withEvent: event)
+        }
+    }
+    
+    func redrawActiveSlice() {
+        if activeSlicePoints.count < 2 {
+            activeSliceBG.path = nil
+            activeSliceFG.path = nil
+            return
+        }
+        
+        while activeSlicePoints.count > 12 {
+            activeSlicePoints.removeAtIndex(0)
+        }
+        
+        let path = UIBezierPath()
+        path.moveToPoint(activeSlicePoints[0])
+        
+        for i in 1 ..< activeSlicePoints.count {
+            path.addLineToPoint(activeSlicePoints[i])
+        }
+        
+        activeSliceBG.path = path.CGPath
+        activeSliceFG.path = path.CGPath
     }
     
     func createScore() {
