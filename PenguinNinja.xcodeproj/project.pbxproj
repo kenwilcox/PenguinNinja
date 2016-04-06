@@ -77,6 +77,8 @@
 		BEB18BDD1CB4B22A00339806 /* swoosh3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = swoosh3.caf; sourceTree = "<group>"; };
 		BEB18BDE1CB4B22A00339806 /* whack.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whack.caf; sourceTree = "<group>"; };
 		BEB18BDF1CB4B22A00339806 /* wrong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = wrong.caf; sourceTree = "<group>"; };
+		BEB18BEC1CB4BB2B00339806 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		BEB18BED1CB4BB2B00339806 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,8 @@
 		BEB18B931CB4B0B100339806 = {
 			isa = PBXGroup;
 			children = (
+				BEB18BEC1CB4BB2B00339806 /* LICENSE.md */,
+				BEB18BED1CB4BB2B00339806 /* README.md */,
 				BEB18B9E1CB4B0B200339806 /* PenguinNinja */,
 				BEB18BB71CB4B0B200339806 /* PenguinNinjaTests */,
 				BEB18BC21CB4B0B200339806 /* PenguinNinjaUITests */,
