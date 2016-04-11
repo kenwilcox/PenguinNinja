@@ -284,7 +284,7 @@ class GameScene: SKScene {
         }
         
         gameEnded = true
-        physicsWorld.speed = 0
+        //physicsWorld.speed = 0
         userInteractionEnabled = false
         
         if bombSoundEffect != nil {
